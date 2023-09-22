@@ -3,24 +3,24 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class SanPhamRepository : ISanPhamRepository
+    public class KhachHangRepository : IKhachHangRepository
     {
         private IDatabaseHelper _dbHelper;
-        public SanPhamRepository(IDatabaseHelper dbHelper)
+        public KhachHangRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
-        public SanPhamModel GetSanPhamByID(string id)
+        public KhachHangModel GetKhachHangByID(string id)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_byid",
-                     "@MaSanPham", id);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_khachhang_byid",
+                     "@MaKhachHang", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+                return dt.ConvertTo<KhachHangModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -28,22 +28,16 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Create(SanPhamModel model)
+        public bool Create(KhachHangModel model)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_them_sanpham",
-                    "@TenSanPham", model.TenSanPham,
-                    "@Size", model.Size,
-                    "@GiaTien", model.GiaTien,
-                    "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
-                    "@DaBan", model.DaBan,
-                    "@MaDanhMuc", model.MaDanhMuc,
-                    "@MaThuongHieu", model.MaThuongHieu);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_them_khachhang",
+                    "@TenKhachHang", model.TenKhachHang,
+                    "@Email", model.Email,
+                    "@DiaChi", model.DiaChi,
+                    "@SDT", model.SDT);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -55,23 +49,17 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Update(SanPhamModel model)
+        public bool Update(KhachHangModel model)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sua_sanpham",
-                    "@MaSanPham", model.MaSanPham,
-                    "@TenSanPham", model.TenSanPham,
-                    "@Size", model.Size,
-                    "@GiaTien", model.GiaTien,
-                    "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
-                    "@DaBan", model.DaBan,
-                    "@MaDanhMuc", model.MaDanhMuc,
-                    "@MaThuongHieu", model.MaThuongHieu);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sua_khachhang",
+                    "@MaKhachHang", model.MaKhachHang,
+                    "@TenKhachHang", model.TenKhachHang,
+                    "@Email", model.Email,
+                    "@DiaChi", model.DiaChi,
+                    "@SDT", model.SDT);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -89,8 +77,8 @@ namespace DataAccessLayer
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_xoa_sanpham",
-                "@MaSanPham", id);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_xoa_khachhang",
+                "@MaKhachHang", id);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -103,21 +91,21 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string ten_sanpham, int gia_tien)
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khachhang, string sdt)
         {
             string msgError = "";
             total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable (out msgError, "sp_search_sanpham",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_khachhang",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@ten_sanpham", ten_sanpham,
-                    "@gia_tien", gia_tien);
+                    "@ten_sanpham", ten_khachhang,
+                    "@gia_tien", sdt);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<SanPhamModel>().ToList();
+                return dt.ConvertTo<KhachHangModel>().ToList();
             }
             catch (Exception ex)
             {

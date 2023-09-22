@@ -9,10 +9,11 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface ISanPhamRepository
     {
+        SanPhamModel GetSanPhamByID(string id);
         bool Create(SanPhamModel model);
         bool Update(SanPhamModel model);
         bool Delete(string id);
 
-        List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string ten_sanpham, string so_luong);
+        List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string ten_sanpham, int gia_tien);
     }
 }

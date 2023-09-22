@@ -14,7 +14,14 @@ namespace Api.BTL.Controllers
         {
             _sanPhamBusiness = sanPhamBusiness;
         }
-       
+
+        [Route("get-by-id/{id}")]
+        [HttpGet]
+        public SanPhamModel GetSanPhamByID(string id)
+        {
+            return _sanPhamBusiness.GetSanPhamByID(id);
+        }
+
 
         [Route("create-sanpham")]
         [HttpPost]
@@ -36,9 +43,9 @@ namespace Api.BTL.Controllers
         [HttpPost]
         public IActionResult DeleteSanPham([FromBody] Dictionary<string, object> formData)
         {
-            string SanPhamID = "";
-            if (formData.Keys.Contains("SanPhamID") && !string.IsNullOrEmpty(Convert.ToString(formData["SanPhamID"]))) { SanPhamID = Convert.ToString(formData["SanPhamID"]); }
-            _sanPhamBusiness.Delete(SanPhamID);
+            string MaSanPham = "";
+            if (formData.Keys.Contains("MaSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["MaSanPham"]))) { MaSanPham = Convert.ToString(formData["MaSanPham"]); }
+            _sanPhamBusiness.Delete(MaSanPham);
             return Ok();
         }
         [Route("search")]
@@ -52,10 +59,10 @@ namespace Api.BTL.Controllers
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string ten_sanpham = "";
                 if (formData.Keys.Contains("ten_sanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_sanpham"]))) { ten_sanpham = Convert.ToString(formData["ten_sanpham"]); }
-                string so_luong = "";
-                if (formData.Keys.Contains("so_luong") && !string.IsNullOrEmpty(Convert.ToString(formData["so_luong"]))) { so_luong = Convert.ToString(formData["so_luong"]); }
+                int gia_tien = 0;
+                if (formData.Keys.Contains("gia_tien") && !string.IsNullOrEmpty(Convert.ToString(formData["gia_tien"]))) { gia_tien = Convert.ToInt32(formData["gia_tien"]); }
                 long total = 0;
-                var data = _sanPhamBusiness.Search(page, pageSize, out total, ten_sanpham, so_luong);
+                var data = _sanPhamBusiness.Search(page, pageSize, out total, ten_sanpham, gia_tien);
                 return Ok(
                     new
                     {
