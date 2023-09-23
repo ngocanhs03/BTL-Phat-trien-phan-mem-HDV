@@ -9,17 +9,24 @@ namespace Api.BTL.Controllers
     [ApiController]
     public class KhachHangController : ControllerBase
     {
-        private IKhachHangBusiness khachHangBusiness1;
+        private IKhachHangBusiness _khachHangBusiness;
         public KhachHangController(IKhachHangBusiness khachHangBusiness)
         {
-            khachHangBusiness1 = khachHangBusiness;
+            _khachHangBusiness = khachHangBusiness;
         }
 
         [Route("get-by-id/{id}")]
         [HttpGet]
         public KhachHangModel GetSanPhamByID(string id)
         {
-            return khachHangBusiness1.GetKhachHangByID(id);
+            return _khachHangBusiness.GetKhachHangByID(id);
+        }
+
+        [Route("get-all")]
+        [HttpGet]
+        public List<KhachHangModel> GetAllKhachHang()
+        {
+            return _khachHangBusiness.GetAllKhachHang();
         }
 
 
@@ -27,7 +34,7 @@ namespace Api.BTL.Controllers
         [HttpPost]
         public KhachHangModel CreateKhachHang([FromBody] KhachHangModel model)
         {
-            khachHangBusiness1.Create(model);
+            _khachHangBusiness.Create(model);
             return model;
         }
 
@@ -35,7 +42,7 @@ namespace Api.BTL.Controllers
         [HttpPost]
         public KhachHangModel UpdateKhachHang([FromBody] KhachHangModel model)
         {
-            khachHangBusiness1.Update(model);
+            _khachHangBusiness.Update(model);
             return model;
         }
 
@@ -45,9 +52,11 @@ namespace Api.BTL.Controllers
         {
             string MaKhachHang = "";
             if (formData.Keys.Contains("MaKhachHang") && !string.IsNullOrEmpty(Convert.ToString(formData["MaKhachHang"]))) { MaKhachHang = Convert.ToString(formData["MaKhachHang"]); }
-            khachHangBusiness1.Delete(MaKhachHang);
+            _khachHangBusiness.Delete(MaKhachHang);
             return Ok();
         }
+
+
         [Route("search")]
         [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -59,10 +68,10 @@ namespace Api.BTL.Controllers
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string ten_khachhang = "";
                 if (formData.Keys.Contains("ten_khachhang") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_khachhang"]))) { ten_khachhang = Convert.ToString(formData["ten_khachhang"]); }
-                string SDT = 0;
-                if (formData.Keys.Contains("SDT") && !string.IsNullOrEmpty(Convert.ToString(formData["SDT"]))) { SDT = Convert.ToString(formData["SDT"]); }
+                string diachi = "";
+                if (formData.Keys.Contains("diachi") && !string.IsNullOrEmpty(Convert.ToString(formData["diachi"]))) { diachi = Convert.ToString(formData["diachi"]); }
                 long total = 0;
-                var data = khachHangBusiness1.Search(page, pageSize, out total, ten_khachhang, SDT);
+                var data = _khachHangBusiness.Search(page, pageSize, out total, ten_khachhang, diachi);
                 return Ok(
                     new
                     {

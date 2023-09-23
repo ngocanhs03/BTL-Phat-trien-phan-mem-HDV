@@ -18,6 +18,11 @@ namespace BusinessLogicLayer
             return _res.GetKhachHangByID(id);
         }
 
+        public List<KhachHangModel> GetAllKhachHang()
+        {
+            return _res.GetAllKhachHang();
+        }
+
         public bool Create(KhachHangModel model)
         {
             return _res.Create(model);
