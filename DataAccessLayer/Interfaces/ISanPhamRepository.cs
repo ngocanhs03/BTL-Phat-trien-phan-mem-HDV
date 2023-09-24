@@ -10,6 +10,8 @@ namespace DataAccessLayer.Interfaces
     public partial interface ISanPhamRepository
     {
         SanPhamModel GetSanPhamByID(string id);
+
+        List<SanPhamModel> GetAllSanPham();
         bool Create(SanPhamModel model);
         bool Update(SanPhamModel model);
         bool Delete(string id);

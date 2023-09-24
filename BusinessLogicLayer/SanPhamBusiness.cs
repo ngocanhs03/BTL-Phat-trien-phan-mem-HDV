@@ -18,6 +18,11 @@ namespace BusinessLogicLayer
             return _res.GetSanPhamByID(id);
         }
 
+        public List<SanPhamModel> GetAllSanPham()
+        {
+            return _res.GetAllSanPham();
+        }
+
         public bool Create(SanPhamModel model)
         {
             return _res.Create(model);

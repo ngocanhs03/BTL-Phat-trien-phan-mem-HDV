@@ -10,7 +10,7 @@ namespace BusinessLogicLayer
     public partial interface IHoaDonNhapBusiness
     {
         bool Create(HoaDonNhapModel model);
-        bool Update(HoaDonNhapModel model);
+        //bool Update(HoaDonNhapModel model);
 
     }
 }

@@ -19,9 +19,9 @@ namespace BusinessLogicLayer
             return _res.Create(model);
         }
 
-        public bool Update(HoaDonNhapModel model)
-        {
-            return _res.Update(model);
-        }
+        //public bool Update(HoaDonNhapModel model)
+        //{
+        //    return _res.Update(model);
+        //}
     }
 }

@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIShopSneaker", "APIShopSneaker\APIShopSneaker.csproj", "{E855C253-53AA-466F-A4E4-113EA1FCE2D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIShopSneaker", "APIShopSneaker\APIShopSneaker.csproj", "{E855C253-53AA-466F-A4E4-113EA1FCE2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{67CCFF04-1728-45B5-85F0-DD09D7DF0CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{67CCFF04-1728-45B5-85F0-DD09D7DF0CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{72958B35-319C-455A-B5D9-2877929A5C36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{72958B35-319C-455A-B5D9-2877929A5C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{CB23FF7B-C716-4BA9-B09A-8A010C4CBBFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{CB23FF7B-C716-4BA9-B09A-8A010C4CBBFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoreProcedure", "StoreProcedure", "{AADBADE4-312C-4AB8-9F93-059AD9AF01C8}"
+	ProjectSection(SolutionItems) = preProject
+		..\Store_procedure.sql = ..\Store_procedure.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

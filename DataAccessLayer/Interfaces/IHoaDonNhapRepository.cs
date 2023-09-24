@@ -11,6 +11,6 @@ namespace DataAccessLayer.Interfaces
     {
         bool Create(HoaDonNhapModel model);
 
-        bool Update(HoaDonNhapModel model);
+        //bool Update(HoaDonNhapModel model);
     }
 }

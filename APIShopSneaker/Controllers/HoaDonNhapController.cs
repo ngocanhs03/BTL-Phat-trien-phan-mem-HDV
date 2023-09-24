@@ -23,12 +23,12 @@ namespace Api.BTL.Controllers
             return model;
         }
 
-        [Route("update-hoaDonNhap")]
-        [HttpPost]
-        public HoaDonNhapModel Update([FromBody] HoaDonNhapModel model)
-        {
-            _hoaDonNhapBusiness.Update(model);
-            return model;
-        }
+        //[Route("update-hoaDonNhap")]
+        //[HttpPost]
+        //public HoaDonNhapModel Update([FromBody] HoaDonNhapModel model)
+        //{
+        //    _hoaDonNhapBusiness.Update(model);
+        //    return model;
+        //}
     }
 }

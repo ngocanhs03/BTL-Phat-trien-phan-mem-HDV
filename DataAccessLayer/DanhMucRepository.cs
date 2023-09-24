@@ -3,24 +3,24 @@ using Models;
 
 namespace DataAccessLayer
 {
-    public class SanPhamRepository : ISanPhamRepository
+    public class DanhMucRepository : IDanhMucRepository
     {
         private IDatabaseHelper _dbHelper;
-        public SanPhamRepository(IDatabaseHelper dbHelper)
+        public DanhMucRepository(IDatabaseHelper dbHelper)
         {
             _dbHelper = dbHelper;
         }
 
-        public SanPhamModel GetSanPhamByID(string id)
+        public DanhMucModel GetDanhMucByID(string id)
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_sanpham_byid",
-                     "@MaSanPham", id);
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_danhmuc_by_id",
+                     "@MaDanhMuc", id);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+                return dt.ConvertTo<DanhMucModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -28,15 +28,15 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> GetAllSanPham()
+        public List<DanhMucModel> GetAllDanhMuc()
         {
             string msgError = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_sanpham");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_get_all_danhmuc");
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SanPhamModel>().ToList();
+                return dt.ConvertTo<DanhMucModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -44,22 +44,13 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Create(SanPhamModel model)
+        public bool Create(DanhMucModel model)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_them_sanpham",
-                    "@TenSanPham", model.TenSanPham,
-                    "@Size", model.Size,
-                    "@GiaTien", model.GiaTien,
-                    "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
-                    "@DaBan", model.DaBan,
-                    "@MaDanhMuc", model.MaDanhMuc,
-                    "@MaThuongHieu", model.MaThuongHieu);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_create_danhmuc",
+                    "@TenDanhMuc", model.TenDanhMuc);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -71,23 +62,14 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public bool Update(SanPhamModel model)
+        public bool Update(DanhMucModel model)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sua_sanpham",
-                    "@MaSanPham", model.MaSanPham,
-                    "@TenSanPham", model.TenSanPham,
-                    "@Size", model.Size,
-                    "@GiaTien", model.GiaTien,
-                    "@GiamGia", model.GiamGia,
-                    "@LinkAnh", model.LinkAnh,
-                    "@MoTa", model.MoTa,
-                    "@SoLuong", model.SoLuong,
-                    "@DaBan", model.DaBan,
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_danhmuc",
                     "@MaDanhMuc", model.MaDanhMuc,
-                    "@MaThuongHieu", model.MaThuongHieu);
+                    "@TenDanhMuc", model.TenDanhMuc);
                 if ((result != null && string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -105,8 +87,8 @@ namespace DataAccessLayer
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_xoa_sanpham",
-                "@MaSanPham", id);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_delete_danhmuc",
+                "@MaDanhMuc", id);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -119,21 +101,20 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string ten_sanpham, int gia_tien)
+        public List<DanhMucModel> Search(int pageIndex, int pageSize, out long total, string ten_danhmuc)
         {
             string msgError = "";
             total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable (out msgError, "sp_search_sanpham",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_search_danhmuc",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@ten_sanpham", ten_sanpham,
-                    "@gia_tien", gia_tien);
+                    "@ten_danhmuc", ten_danhmuc);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<SanPhamModel>().ToList();
+                return dt.ConvertTo<DanhMucModel>().ToList();
             }
             catch (Exception ex)
             {
