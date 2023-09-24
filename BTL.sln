@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{CB23FF7B-C716-4BA9-B09A-8A010C4CBBFA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoreProcedure", "StoreProcedure", "{AADBADE4-312C-4AB8-9F93-059AD9AF01C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DFBE0A20-4C82-4DC3-B35C-C48E461451DF}"
 	ProjectSection(SolutionItems) = preProject
 		..\Store_procedure.sql = ..\Store_procedure.sql
 	EndProjectSection
