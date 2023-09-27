@@ -3,7 +3,7 @@
     public class GiamGiaModel
     {
         public int MaGiamGia { get; set; }
-        public int TenMaGG { get; set; }
+        public string TenMaGG { get; set; }
         public DateTime BatDau { get; set; }
         public DateTime KetThuc { get; set; }
         public int SoLuongMa { get; set; }

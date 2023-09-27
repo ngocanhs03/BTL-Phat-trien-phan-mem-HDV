@@ -1,6 +1,6 @@
 ﻿namespace Models
 {
-    public class MaVanChuyenModel
+    public class ThongTinVanChuyenModel
     {
         public int MaVanChuyen { get; set; }
         public string TenNguoiNhan { get; set; }

@@ -17,7 +17,7 @@ namespace Api.BTL.Controllers
 
         [Route("get-by-id/{id}")]
         [HttpGet]
-        public KhachHangModel GetSanPhamByID(string id)
+        public KhachHangModel GetKhachHangByID(string id)
         {
             return _khachHangBusiness.GetKhachHangByID(id);
         }

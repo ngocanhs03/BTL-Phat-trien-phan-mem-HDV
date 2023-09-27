@@ -18,6 +18,14 @@ builder.Services.AddTransient<IHoaDonNhapRepository, HoaDonNhapRepository>();
 builder.Services.AddTransient<IHoaDonNhapBusiness, HoaDonNhapBusiness>();
 builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
 builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
+builder.Services.AddTransient<IThuongHieuRepository, ThuongHieuRepository>();
+builder.Services.AddTransient<IThuongHieuBusiness, ThuongHieuBusiness>();
+builder.Services.AddTransient<ITinhThanhPhoRepository, TinhThanhPhoRepository>();
+builder.Services.AddTransient<ITinhThanhPhoBusiness, TinhThanhPhoBusiness>();
+builder.Services.AddTransient<IDanhGiaRepository, DanhGiaRepository>();
+builder.Services.AddTransient<IDanhGiaBusiness, DanhGiaBusiness>();
+builder.Services.AddTransient<IGiamGiaRepository, GiamGiaRepository>();
+builder.Services.AddTransient<IGiamGiaBusiness, GiamGiaBusiness>();
 // Add services to the container.
 
 builder.Services.AddControllers();
