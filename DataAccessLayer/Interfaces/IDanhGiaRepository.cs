@@ -9,7 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IDanhGiaRepository
     {
-        
+        DanhGiaModel GetByID(string id);
         bool Create(DanhGiaModel model);
         bool Update(DanhGiaModel model);
         bool Delete(string id);
